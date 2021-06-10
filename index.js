@@ -1,5 +1,6 @@
 var express = require('express')
 const axios = require('axios');
+
 var app = express()
 const port = 3000
 
@@ -8,7 +9,7 @@ var hxdrConf = {
   accessTokenUri: 'https://hxdr-uat-dr-userpool-cgn.auth.eu-west-1.amazoncognito.com/oauth2/token',
   authorizationUri: 'https://hxdr-uat-dr-userpool-cgn.auth.eu-west-1.amazoncognito.com/oauth2/authorize',
   redirectUri: 'http://localhost:3000/auth/hxdr/callback',
-  scopes: ['profile']
+  scopes: ['profile', 'openid', 'https://uat-hxdr.com/subscriptions']
 }
 
 app.get('/', (req, res) => {
