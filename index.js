@@ -9,7 +9,18 @@ var hxdrConf = {
   accessTokenUri: 'https://hxdr-uat-dr-userpool-cgn.auth.eu-west-1.amazoncognito.com/oauth2/token',
   authorizationUri: 'https://hxdr-uat-dr-userpool-cgn.auth.eu-west-1.amazoncognito.com/oauth2/authorize',
   redirectUri: 'http://localhost:3000/auth/hxdr/callback',
-  scopes: ['profile', 'openid', 'https://uat-hxdr.com/subscriptions']
+  scopes: [
+    'profile', 
+    'openid', 
+    'https://uat-hxdr.com/subscriptions',
+    'https://uat-hxdr.com/baselayerstreamer',
+    'https://uat-hxdr.com/graphiql',
+    'https://uat-hxdr.com/vendor',
+    'https://uat-hxdr.com/files',
+    'https://uat-hxdr.com/baselayer',
+    'https://uat-hxdr.com/studioapi',
+    'https://uat-hxdr.com/graphql',
+  ]
 }
 
 app.get('/', (req, res) => {
@@ -25,7 +36,7 @@ app.get('/auth/hxdr/callback', async (req, res) => {
   }
   try {
     result = await axios.post(`${hxdrConf.accessTokenUri}?grant_type=authorization_code&code=${code}&redirect_uri=${hxdrConf.redirectUri}&client_id=${hxdrConf.clientId}&scope=${hxdrConf.scopes.join('+')}`)
-    return res.send(JSON.stringify(result.data))
+    return res.send(`<pre>${JSON.stringify(result.data,undefined,2)}</pre>`)
   } catch (error) {
     console.log(error)
   }
