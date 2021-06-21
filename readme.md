@@ -18,5 +18,5 @@ Go to https://uat-hxdr.com/graphql and paste your access_token ion the header
 
 Here is an example query to make sure you are authorized
 ```
-query infome {infoMe{roles}}
+query getuser {getUser{email}}
 ```
